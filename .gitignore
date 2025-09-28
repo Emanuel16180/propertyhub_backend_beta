@@ -1,0 +1,128 @@
+# Variables de entorno - ¡SÚPER IMPORTANTE!
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# Base de datos local
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+
+# Archivos generados por Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos de Django
+*.log
+local_settings.py
+media/
+staticfiles/
+static_collected/
+
+# Archivos de respaldo de base de datos
+*.dump
+*.sql
+
+# Archivos del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editores de código e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos de logs
+*.log
+logs/
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Virtualenv
+venv/
+ENV/
+env/
+.venv/
+
+# Pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Archivos de configuración específicos del proyecto
+config/local.py
+config/production.py
+
+# Archivos de migración (opcional - algunos prefieren versionarlas)
+# migrations/
+
+# Node modules (si usas frontend tools)
+node_modules/
+
+# Archivos de Webpack/Frontend builds
+/static/dist/
+/static/webpack-stats.json
