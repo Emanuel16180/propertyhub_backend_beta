@@ -36,7 +36,9 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*", cast=Csv())
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
 
     'rest_framework',
     'rest_framework_simplejwt',
@@ -179,3 +181,11 @@ CORS_ALLOWED_METHODS = [
     'POST',
     'PUT',
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
