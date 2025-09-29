@@ -126,3 +126,5 @@ node_modules/
 # Archivos de Webpack/Frontend builds
 /static/dist/
 /static/webpack-stats.json
+
+resident_photos/

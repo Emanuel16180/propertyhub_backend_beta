@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from .storage import SupabaseStorage
 
 class UserProfile(models.Model):
     """Perfil extendido para todos los usuarios"""
@@ -49,7 +50,13 @@ class ResidentProfile(models.Model):
     # Información específica de residentes
     resident_type = models.CharField('Tipo de residente', max_length=20, choices=RESIDENT_TYPES)
     birth_date = models.DateField('Fecha de nacimiento')
-    face_photo = models.ImageField('Foto del rostro', upload_to='resident_photos/', blank=True, null=True)
+    #face_photo = models.ImageField('Foto del rostro', upload_to='resident_photos/', blank=True, null=True)
+    face_photo = models.ImageField(
+        'Foto del rostro',
+        storage=SupabaseStorage(),   # 👈 fuerza a usar Supabase
+        blank=True,
+        null=True
+    )
     
     # Vinculación con casa (por ahora dejamos solo el campo, sin FK)
     house_identifier = models.CharField('Identificador de casa', max_length=50, blank=True, help_text='Por ahora solo texto, después será FK')
