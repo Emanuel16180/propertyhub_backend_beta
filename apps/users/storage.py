@@ -3,7 +3,9 @@ from django.conf import settings
 from supabase import create_client
 import uuid
 from io import BytesIO
+from django.utils.deconstruct import deconstructible 
 
+@deconstructible
 class SupabaseStorage(Storage):
     def __init__(self):
         self.client = create_client(
