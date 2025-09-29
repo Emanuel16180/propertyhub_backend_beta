@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/vehicles/', include('apps.vehicles.urls')),
     path('api/common-areas/', include('apps.common_areas.urls')),
     path('api/communications/', include('apps.communications.urls')),
+    path('api/reservations/', include('apps.reservations.urls')),
 ]
 
 # Servir archivos media en desarrollo
