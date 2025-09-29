@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+import cloudinary
 from decouple import config, Csv  
 import os
 
@@ -182,10 +183,11 @@ CORS_ALLOWED_METHODS = [
     'PUT',
 ]
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default='dilbzznw3'),
-    'API_KEY': config('CLOUDINARY_API_KEY', default='882579196479815'),
-    'API_SECRET': config('CLOUDINARY_API_SECRET', default='j937QFVDIi2FCdaz10DGgZ0K_i0')
-}
+cloudinary.config(
+    cloud_name=config('CLOUDINARY_CLOUD_NAME'),
+    api_key=config('CLOUDINARY_API_KEY'),
+    api_secret=config('CLOUDINARY_API_SECRET'),
+    secure=True
+)
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
