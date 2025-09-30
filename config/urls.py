@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/communications/', include('apps.communications.urls')),
     path('api/reservations/', include('apps.reservations.urls')),
     path('api/access-control/', include('apps.access_control.urls')),
+    path('api/visitor-control/', include('apps.visitor_control.urls')),
 ]
 
 # Servir archivos media en desarrollo
