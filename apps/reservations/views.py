@@ -254,30 +254,34 @@ def available_time_slots_view(request):
         'available_count': sum(1 for slot in time_slots if slot['available'])
     })
 
+# Asegúrate de tener estos imports al inicio del archivo:
+# from django.db.models import Q
+# from rest_framework.decorators import api_view, permission_classes
+
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
 def my_reservations_view(request):
-    """Obtener reservas del usuario actual"""
-    # Reservas donde el usuario es el residente
-    user_reservations = Reservation.objects.filter(
-        resident=request.user
-    ).select_related('common_area', 'property')
-    
-    # Reservas de propiedades donde el usuario es propietario o residente
+    """Obtener reservas del usuario actual (como residente o como dueño de la propiedad)"""
+    user = request.user
+
+    # 1. Identificar propiedades vinculadas al usuario (Dueño o Residente)
     user_properties = Property.objects.filter(
-        Q(owner=request.user) |
-        Q(residents__resident=request.user, residents__is_active=True)
+        Q(owner=user) |
+        Q(residents__resident=user, residents__is_active=True)
     )
+
+    # 2. Hacer una ÚNICA consulta con condiciones OR
+    all_reservations = Reservation.objects.filter(
+        Q(resident=user) | 
+        Q(house_property__in=user_properties)
+    ).select_related(
+        'common_area', 
+        'house_property', 
+        'resident', 
+        'created_by'
+    ).order_by('-date', '-start_time').distinct()
     
-    property_reservations = Reservation.objects.filter(
-        house_property__in=user_properties
-    ).exclude(
-        resident=request.user  # Evitar duplicados
-    ).select_related('common_area', 'house_property', 'resident')
-    
-    # Combinar y ordenar
-    all_reservations = user_reservations.union(property_reservations).order_by('-date', '-start_time')
-    
+    # 3. Serializar y responder
     serializer = ReservationSerializer(all_reservations, many=True)
     
     return Response({
