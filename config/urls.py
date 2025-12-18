@@ -14,6 +14,7 @@ urlpatterns = [
     path('api/access-control/', include('apps.access_control.urls')),
     path('api/visitor-control/', include('apps.visitor_control.urls')),
     path('api/security/', include('apps.security.urls')),
+    path('api/billing/', include('apps.billing.urls')),
 ]
 
 # Servir archivos media en desarrollo

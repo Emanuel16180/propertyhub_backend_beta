@@ -23,7 +23,7 @@ try:
         print(f"✅ Firebase inicializado usando: {cred_path}")
         
 except Exception as e:
-    print(f"❌ Error iniciando Firebase: {e}")
+    print(f"Error iniciando Firebase: {e}")
 
 @receiver(post_save, sender=Communication)
 def send_notification_on_new_notice(sender, instance, created, **kwargs):
