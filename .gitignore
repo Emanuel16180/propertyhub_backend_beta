@@ -128,3 +128,5 @@ node_modules/
 /static/webpack-stats.json
 
 resident_photos/
+
+serviceAccountKey.json
